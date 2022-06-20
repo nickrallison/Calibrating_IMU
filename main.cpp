@@ -10,35 +10,15 @@
 int main() {
     const static int datasize = 570;
     Eigen::MatrixXd InputData =  InitData(datasize);
-    //std::cout << InputData(2, 0) << '\n';
-
-//   ###########################
-//   Initialzation and file reading, Reads to MatrixXd InputData
-//   Linear Regression #1 Fitting data to bisecting Plane
-//   ##########################
-
     Eigen::VectorXd regressOut = regress(InputData, datasize);
-
     double a = regressOut(0);
     double b = regressOut(1);
     double c = regressOut(2);
-    //std::cout << a << ' ' << b << ' ' << c << '\n';
 
     for (int i = 0; i < datasize; i++) {
         InputData(2, i) -= c;
     }
 
-
-//   ###########################
-//   Squishing data onto the plane
-//   ###########################
-
-
-//   ###########################
-//   Finding Rotation of that plane compared to xY plane
-//   &
-//   Rotating plane back to xY plane
-//   ###########################
     double norm = pow((a * a + b * b + 1), 0.5);
     double theta = acos(-1/norm);
     double phi = asin(a/(pow(1 - 1/(a * a + b * b + 1), 0.5)*norm));
@@ -56,21 +36,7 @@ int main() {
     }
 
     Eigen::VectorXd sums = calcSums(FlatData);
-
-    //std::cout << sums << "  <-- Here are the sums\n";
-
     std::cout << calcCircle(sums) << '\n';
-
-
-//   ###########################
-//   The Hair tearing out part to do in CPP, optimization
-//   Finding critical points of squared error function and solving for
-//   translation and radius values of the fit circle
-//   ###########################
-
-//   ###########################
-//   Chose Real valued answer with r > 0
-//   ###########################
     return 1;
 }
 
@@ -140,8 +106,7 @@ Eigen::VectorXd regress(Eigen::MatrixXd InputData, int len) {
     Eigen::VectorXd computeVec {{xzsum, yzsum, zsum}};
 
     Eigen::VectorXd x = computeMat.inverse() * computeVec;
-    Eigen::VectorXd outvec {{x(0), x(1), x(2), xsum / len, ysum / len}};
-    return outvec;
+    return x;
 }
 
 Eigen::VectorXd calcSums(Eigen::MatrixXd data) {
