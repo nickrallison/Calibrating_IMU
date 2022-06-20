@@ -31,12 +31,9 @@ int main() {
 
     Eigen::MatrixXd FlatData = Aout * InputData;
 
-    for (int i = 0; i < datasize; i++) {
-        FlatData(2, i) = 0;
-    }
-
     Eigen::VectorXd sums = calcSums(FlatData);
     std::cout << calcCircle(sums) << '\n';
+
     return 1;
 }
 
@@ -154,6 +151,32 @@ Eigen::VectorXd calcCircle(Eigen::VectorXd sums) {
     outVec(1) = (x*x*xxy + xx*xx*y + x*x*yyy - n*xx*xxy + n*xxx*xy + n*xy*xyy - n*xx*yyy - x*xx*xy - x*xxx*y - x*xyy*y - x*xy*yy + xx*y*yy)/(2*(yy*x*x - 2*x*xy*y + n*xy*xy + xx*y*y - n*xx*yy));
     outVec(2) = -pow((n*n*xx*xx*xxy*xxy + 2*n*n*xx*xx*xxy*yyy + n*n*xx*xx*yyy*yyy - 2*n*n*xx*xxx*xxy*xy - 2*n*n*xx*xxx*xy*yyy - 2*n*n*xx*xxy*xy*xyy - 2*n*n*xx*xy*xyy*yyy + n*n*xxx*xxx*xy*xy + n*n*xxx*xxx*yy*yy - 2*n*n*xxx*xxy*xy*yy + 2*n*n*xxx*xy*xy*xyy - 2*n*n*xxx*xy*yy*yyy + 2*n*n*xxx*xyy*yy*yy + n*n*xxy*xxy*xy*xy + 2*n*n*xxy*xy*xy*yyy - 2*n*n*xxy*xy*xyy*yy + n*n*xy*xy*xyy*xyy + n*n*xy*xy*yyy*yyy - 2*n*n*xy*xyy*yy*yyy + n*n*xyy*xyy*yy*yy - 2*n*x*x*xx*xxy*xxy - 4*n*x*x*xx*xxy*yyy - 2*n*x*x*xx*yyy*yyy + 2*n*x*x*xxx*xxy*xy + 2*n*x*x*xxx*xy*yyy + 2*n*x*x*xxy*xy*xyy + 2*n*x*x*xy*xyy*yyy + 2*n*x*xx*xx*xxy*xy + 2*n*x*xx*xx*xy*yyy + 2*n*x*xx*xxx*xxy*y - 2*n*x*xx*xxx*xy*xy + 2*n*x*xx*xxx*y*yyy - 6*n*x*xx*xxx*yy*yy + 8*n*x*xx*xxy*xy*yy + 2*n*x*xx*xxy*xyy*y - 2*n*x*xx*xy*xy*xyy + 8*n*x*xx*xy*yy*yyy + 2*n*x*xx*xyy*y*yyy - 6*n*x*xx*xyy*yy*yy - 2*n*x*xxx*xxx*xy*y + 2*n*x*xxx*xxy*y*yy + 2*n*x*xxx*xy*xy*yy - 4*n*x*xxx*xy*xyy*y + 2*n*x*xxx*y*yy*yyy - 2*n*x*xxx*yy*yy*yy - 2*n*x*xxy*xxy*xy*y - 4*n*x*xxy*xy*xy*xy - 4*n*x*xxy*xy*y*yyy + 2*n*x*xxy*xy*yy*yy + 2*n*x*xxy*xyy*y*yy - 4*n*x*xy*xy*xy*yyy + 2*n*x*xy*xy*xyy*yy - 2*n*x*xy*xyy*xyy*y - 2*n*x*xy*y*yyy*yyy + 2*n*x*xy*yy*yy*yyy + 2*n*x*xyy*y*yy*yyy - 2*n*x*xyy*yy*yy*yy - 2*n*xx*xx*xx*xxy*y - 2*n*xx*xx*xx*y*yyy + 4*n*xx*xx*xx*yy*yy + 2*n*xx*xx*xxx*xy*y - 6*n*xx*xx*xxy*y*yy - 8*n*xx*xx*xy*xy*yy + 2*n*xx*xx*xy*xyy*y - 6*n*xx*xx*y*yy*yyy + 4*n*xx*xx*yy*yy*yy + 8*n*xx*xxx*xy*y*yy + 2*n*xx*xxy*xy*xy*y + 4*n*xx*xy*xy*xy*xy + 2*n*xx*xy*xy*y*yyy - 8*n*xx*xy*xy*yy*yy + 8*n*xx*xy*xyy*y*yy - 2*n*xxx*xxx*y*y*yy + 2*n*xxx*xxy*xy*y*y - 4*n*xxx*xy*xy*xy*y + 2*n*xxx*xy*y*y*yyy + 2*n*xxx*xy*y*yy*yy - 4*n*xxx*xyy*y*y*yy - 2*n*xxy*xy*xy*y*yy + 2*n*xxy*xy*xyy*y*y + 4*n*xy*xy*xy*xy*yy - 4*n*xy*xy*xy*xyy*y - 2*n*xy*xy*y*yy*yyy + 2*n*xy*xyy*y*y*yyy + 2*n*xy*xyy*y*yy*yy - 2*n*xyy*xyy*y*y*yy + x*x*x*x*xxy*xxy + 2*x*x*x*x*xxy*yyy + x*x*x*x*yyy*yyy - 2*x*x*x*xx*xxy*xy - 2*x*x*x*xx*xy*yyy - 2*x*x*x*xxx*xxy*y - 2*x*x*x*xxx*y*yyy + 4*x*x*x*xxx*yy*yy - 6*x*x*x*xxy*xy*yy - 2*x*x*x*xxy*xyy*y - 6*x*x*x*xy*yy*yyy - 2*x*x*x*xyy*y*yyy + 4*x*x*x*xyy*yy*yy + 2*x*x*xx*xx*xxy*y + x*x*xx*xx*xy*xy + 2*x*x*xx*xx*y*yyy - 3*x*x*xx*xx*yy*yy + 2*x*x*xx*xxx*xy*y + 4*x*x*xx*xxy*y*yy + 6*x*x*xx*xy*xy*yy + 2*x*x*xx*xy*xyy*y + 4*x*x*xx*y*yy*yyy - 2*x*x*xx*yy*yy*yy + x*x*xxx*xxx*y*y - 10*x*x*xxx*xy*y*yy + 2*x*x*xxx*xyy*y*y + x*x*xxy*xxy*y*y + 8*x*x*xxy*xy*xy*y + 2*x*x*xxy*y*y*yyy - 2*x*x*xxy*y*yy*yy + 8*x*x*xy*xy*y*yyy + 5*x*x*xy*xy*yy*yy - 10*x*x*xy*xyy*y*yy + x*x*xyy*xyy*y*y + x*x*y*y*yyy*yyy - 2*x*x*y*yy*yy*yyy + x*x*yy*yy*yy*yy - 2*x*xx*xx*xx*xy*y - 2*x*xx*xx*xxx*y*y + 2*x*xx*xx*xy*y*yy - 2*x*xx*xx*xyy*y*y + 4*x*xx*xxx*y*y*yy - 10*x*xx*xxy*xy*y*y - 8*x*xx*xy*xy*xy*y - 10*x*xx*xy*y*y*yyy + 2*x*xx*xy*y*yy*yy + 4*x*xx*xyy*y*y*yy - 2*x*xxx*xxy*y*y*y + 8*x*xxx*xy*xy*y*y - 2*x*xxx*y*y*y*yyy + 2*x*xxx*y*y*yy*yy + 2*x*xxy*xy*y*y*yy - 2*x*xxy*xyy*y*y*y - 8*x*xy*xy*xy*y*yy + 8*x*xy*xy*xyy*y*y + 2*x*xy*y*y*yy*yyy - 2*x*xy*y*yy*yy*yy - 2*x*xyy*y*y*y*yyy + 2*x*xyy*y*y*yy*yy + xx*xx*xx*xx*y*y - 2*xx*xx*xx*y*y*yy + 4*xx*xx*xxy*y*y*y + 5*xx*xx*xy*xy*y*y + 4*xx*xx*y*y*y*yyy - 3*xx*xx*y*y*yy*yy - 6*xx*xxx*xy*y*y*y + 6*xx*xy*xy*y*y*yy - 6*xx*xy*xyy*y*y*y + xxx*xxx*y*y*y*y - 2*xxx*xy*y*y*y*yy + 2*xxx*xyy*y*y*y*y + xy*xy*y*y*yy*yy - 2*xy*xyy*y*y*y*yy + xyy*xyy*y*y*y*y), 0.5)/(2*(yy*x*x - 2*x*xy*y + n*xy*xy + xx*y*y - n*xx*yy));
     return outVec;
+}
+
+double calcTheta(double, x, double y) {
+    double theta;
+    double deltax = (x - x1);
+    double deltay= (x - y1);
+
+    if (deltax == 0 && deltay == 0) {
+        return 0;
+    }
+    if (deltax == 0 && deltay >= 0) {
+        return EIGEN_PI / 2;
+    }
+    if (deltax == 0 && deltay <= 0) {
+        return -EIGEN_PI / 2;
+    }
+    if (deltax != 0) {
+        theta = atan(deltay/deltax);
+    }
+    if (deltax < 0 && deltay > 0) {
+        theta += EIGEN_PI / 2;
+    }
+    if (deltax < 0 && deltay < 0) {
+        theta -= EIGEN_PI / 2;
+    }
+    return theta;
 }
 
 
