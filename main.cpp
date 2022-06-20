@@ -153,31 +153,6 @@ Eigen::VectorXd calcCircle(Eigen::VectorXd sums) {
     return outVec;
 }
 
-double calcTheta(double, x, double y) {
-    double theta;
-    double deltax = (x - x1);
-    double deltay= (x - y1);
-
-    if (deltax == 0 && deltay == 0) {
-        return 0;
-    }
-    if (deltax == 0 && deltay >= 0) {
-        return EIGEN_PI / 2;
-    }
-    if (deltax == 0 && deltay <= 0) {
-        return -EIGEN_PI / 2;
-    }
-    if (deltax != 0) {
-        theta = atan(deltay/deltax);
-    }
-    if (deltax < 0 && deltay > 0) {
-        theta += EIGEN_PI / 2;
-    }
-    if (deltax < 0 && deltay < 0) {
-        theta -= EIGEN_PI / 2;
-    }
-    return theta;
-}
 
 
 
