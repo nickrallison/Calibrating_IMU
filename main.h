@@ -21,6 +21,4 @@ Eigen::VectorXd calcSums(Eigen::MatrixXd data);
 
 Eigen::VectorXd calcCircle(Eigen::VectorXd sums);
 
-double calcTheta(double, x, double y);
-
 #endif //REGRESSION_MAIN_H
